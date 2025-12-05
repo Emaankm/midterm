@@ -1,27 +1,29 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_IMAGE = "yourusername/hotel-interface:latest"
-    }
+    
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/hotel-interface.git'
+                git branch: 'main',
+                    url: 'https://github.com/Emaankm/midterm.git'
             }
         }
-        stage('Run Tests') {
+        
+        stage('Build') {
             steps {
-                sh 'echo "No real tests yet, just a placeholder"'
+                echo 'No build needed for frontend project'
             }
         }
-        stage('Build Docker Image') {
+        
+        stage('Test') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                echo 'No tests available'
             }
         }
-        stage('Run Docker Container') {
+        
+        stage('Deploy') {
             steps {
-                sh 'docker run -d -p 5000:80 $DOCKER_IMAGE'
+                echo 'Frontend pipeline completed successfully!'
             }
         }
     }
